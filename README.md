@@ -44,8 +44,9 @@ The gene identifier column can be named `Gene`, `gene`, `Transcript`, `transcrip
 
 IMPORTANTLY: Sample names must follow the format:
 
+```
 DatasetID_SampleID_ReplicateID
-
+```
 
 where:
 
@@ -83,10 +84,8 @@ BayCo can generate two types of networks:
 ### 1. Prepare expression data
 
 ```python
-prepared_data = df_to_prepareddf(
-    starting_data,
-    expression_filter=1
-)
+prepared_data = df_to_prepareddf(starting_data,
+                                 expression_filter=1)
 ```
 
 This filters genes by expression level, calculates replicate statistics, and performs the required normalisation.
@@ -94,12 +93,10 @@ This filters genes by expression level, calculates replicate statistics, and per
 ### 2. Generate the network
 
 ```python
-network = df_to_BFs(
-    gene_list,
-    prepared_data,
-    number_of_pairs=30000,
-    mode="positive"
-)
+network = df_to_BFs(gene_list,
+                    prepared_data,
+                    number_of_pairs=30000,
+                    mode="positive")
 ```
 
 Arguments:
@@ -120,11 +117,9 @@ Returns a pandas DataFrame containing pairwise log10 Bayes Factors.
 To access intermediate calculations to assess qualities of the data which influence the inferences:
 
 ```python
-results = df_to_BFs_all_results(
-    gene_list,
-    prepared_data,
-    number_of_pairs=30000
-)
+results = df_to_BFs_all_results(gene_list,
+                                prepared_data,
+                                number_of_pairs=30000)
 ```
 
 Returns:
@@ -153,13 +148,11 @@ Missing gene pairs between datasets are assigned a value of zero before combinat
 For predefined transcription factor-target relationships:
 
 ```python
-tf_target_network = df_to_BFs_tf_vs_targets(
-    tf_list,
-    target_list,
-    prepared_data,
-    number_of_pairs=30000,
-    mode="positive"
-)
+tf_target_network = df_to_BFs_tf_vs_targets(tf_list,
+                                            target_list,
+                                            prepared_data,
+                                            number_of_pairs=30000,
+                                            mode="positive")
 ```
 
 Inputs:
