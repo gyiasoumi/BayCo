@@ -11,19 +11,18 @@ Install the required dependencies using:
 ```bash
 pip install -r requirements.txt
 ```
-
 The required Python packages are:
 
 - pandas
 - numpy
 - scipy
 - matplotlib
-
+- ipykernel
 
 or alternatively, create and activate a conda environment:
 
 ```bash
-conda create -n bayco-env python=3.10 pandas numpy scipy matplotlib
+conda create -n bayco-env python=3.10 pandas numpy scipy matplotlib ipykernel
 conda activate bayco-env
 ```
 
@@ -42,12 +41,11 @@ The expression data must be provided in wide format:
 
 The gene identifier column can be named `Gene`, `gene`, `Transcript`, `transcript`
 
-IMPORTANTLY: Sample names must follow the format:
+IMPORTANTLY, sample names must follow the format:
 
 ```
 DatasetID_SampleID_ReplicateID
 ```
-
 where:
 
 - `DatasetID` identifies the dataset and must be unique between datasets.
@@ -61,6 +59,7 @@ Leaf_0_1
 Leaf_0_2
 Leaf_24_1
 Leaf_24_2
+...
 ```
 
 Multiple datasets should be analysed separately and combined after network inference using `combine_networks()`.
