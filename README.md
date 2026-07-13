@@ -70,11 +70,11 @@ Multiple datasets should be analysed separately and combined after network infer
 
 BayCo can generate two types of networks:
 
-1. **All-pairs networks**
+1. **All pairs network**
 
    Calculates relationships between all input genes.
 
-2. **TF-target networks**
+2. **TF-target network**
 
    Calculates relationships only between predefined transcription factor and target gene pairs.
 
