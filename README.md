@@ -25,6 +25,7 @@ or alternatively, create and activate a conda environment:
 ```bash
 conda create -n bayco-env python=3.10 pandas numpy scipy matplotlib
 conda activate bayco-env
+```
 
 ## Input Data Requirements
 
@@ -43,9 +44,8 @@ The gene identifier column can be named `Gene`, `gene`, `Transcript`, `transcrip
 
 IMPORTANTLY: Sample names must follow the format:
 
-```
 DatasetID_SampleID_ReplicateID
-```
+
 
 where:
 
