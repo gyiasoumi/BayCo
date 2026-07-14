@@ -3,7 +3,7 @@ import numpy as np
 
 
 
-def simulate_parameter_grid_dataset_posneg_2( 
+def realseq( 
     # * experimental set up *        
     seed=17,  # random seed (change to get datasets reps for testing)    
     n_background=10000, # number of genes in the background
