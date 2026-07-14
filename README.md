@@ -1,6 +1,6 @@
 # BayCo
 
-BayCo description...
+BayCo is a tool for generating co-expression networks from RNA-seq datasets. BayCo uses Bayesian two-way hypothesis testing to weigh up the evidence present in a dataset that each pair is, or is not, co-expressed. In this way, BayCo incorporates the unique statistical properties underlying each dataset into co-expression inferences. As the properties of each dataset have been accounted for, BayCo enables co-expression inferences to be combined across independent datasets/experiments, strengthening the evidence supporting inferred co-expression and supporting more robust and reliable networks. 
 
 ## Installation
 
@@ -90,9 +90,9 @@ This filters genes for a minimum expression level, calculates replicate statisti
 
 ```python
 network = df_to_BFs_allgenes(gene_list,
-                    prepared_data,
-                    number_of_pairs=30000,
-                    mode="positive")
+                             prepared_data,
+                             number_of_pairs=30000,
+                             mode="positive")
 ```
 
 Arguments:
