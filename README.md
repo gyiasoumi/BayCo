@@ -197,10 +197,10 @@ We designed RealSeq to test and benchmark BayCo to other association metrics. Re
 - the number of replicates per sample points
 - the inter-replicate noise. 
 
-RealSeq is available in :
+RealSeq has the same dependencies as BayCo but has not been made into a package. Therefore, to run RealSeq, using the bayco-env environment, import the functions from RealSeq_data_simulator/realseq.py using:
 
 ```
-RealSeq_data_simulator/
+from realseq import *
 ```
 
 ## Citation
