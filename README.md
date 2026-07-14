@@ -6,24 +6,23 @@ BayCo description...
 
 BayCo requires Python 3.10 or higher.
 
-Install the required dependencies using:
+We recommend installing BayCo in a dedicated conda environment:
 
+First, create the environment:
 ```bash
-pip install -r requirements.txt
-```
-The required Python packages are:
-
-- pandas
-- numpy
-- scipy
-- matplotlib
-- ipykernel
-
-or alternatively, create and activate a conda environment:
-
-```bash
-conda create -n bayco-env python=3.10 pandas numpy scipy matplotlib ipykernel
+conda create -n bayco-env python=3.10
 conda activate bayco-env
+```
+Then, clone the repository and install BayCo and its dependencies:
+```
+git clone https://github.com/gyiasoumi/BayCo.git
+cd BayCo
+pip install -e .
+```
+
+BayCo can then be imported directly into Python or Jupyter notebooks using
+```
+import bayco
 ```
 
 ## Input Data Requirements
@@ -78,21 +77,19 @@ BayCo can generate two types of networks:
    Calculates relationships only between predefined transcription factor and target gene pairs.
 
 
-## All-Pairs Networks
-
-### 1. Prepare expression data
+## For both types of network, the data first needs to be prepared
 
 ```python
 prepared_data = df_to_prepareddf(starting_data,
                                  expression_filter=1)
 ```
 
-This filters genes by expression level, calculates replicate statistics, and performs the required normalisation.
+This filters genes for a minimum expression level, calculates replicate statistics, and performs the required Z-score normalisation.
 
-### 2. Generate the network
+### 1. Generate an all pairs network
 
 ```python
-network = df_to_BFs(gene_list,
+network = df_to_BFs_allgenes(gene_list,
                     prepared_data,
                     number_of_pairs=30000,
                     mode="positive")
@@ -116,9 +113,9 @@ Returns a pandas DataFrame containing pairwise log10 Bayes Factors.
 To access intermediate calculations to assess qualities of the data which influence the inferences:
 
 ```python
-results = df_to_BFs_all_results(gene_list,
-                                prepared_data,
-                                number_of_pairs=30000)
+results = df_to_BFs_all_results_allgenes(gene_list,
+                                         prepared_data,
+                                         number_of_pairs=30000)
 ```
 
 Returns:
@@ -128,21 +125,16 @@ Returns:
 - alternative model likelihoods (H1)
 - final log10 Bayes Factor network
 
-
-## Combining Networks
-
 To collect evidence of gene pair co-expression across datasets, networks generated from multiple datasets can be combined using:
 
 ```python
-combined_network = combine_networks(
-    [network_1, network_2]
-)
+combined_genenetwork_allgenes = combine_networks_allgenes([network_1, network_2])
 ```
-
 Missing gene pairs between datasets are assigned a value of zero before combination.
 
 
-## TF-Target Networks
+
+## 2. TF-Target Networks
 
 For predefined transcription factor-target relationships:
 
@@ -170,6 +162,12 @@ Output columns:
 | log10_BF | log10 Bayes Factor |
 
 
+To collect evidence of gene pair co-expression across datasets, networks generated from multiple datasets can be combined using:
+
+```python
+combined_tf_target_genenetwork = combine_tf_target_networks([network_1, network_2])
+```
+
 ## Examples
 
 Example notebooks demonstrating BayCo workflows are provided in:
@@ -183,11 +181,27 @@ and
 ```
 examples/example_TF_target_network/
 ```
+These examples are run on simulated RNA-seq datasets we generated using our own RNA-seq simulator RealSeq.
 
-## RNA-seq simulator
-The RNA-seq dataset simulator we designed to test and benchmark BayCo to other metrics is provided in:
+## RealSeq RNA-seq simulator
+We designed RealSeq to test and benchmark BayCo to other association metrics. RealSeq generates RNA-seq datasets with user guide properties such as the number of sample point, number of biological replicates per sample points, 
 
-RNA_seq_dataset_simulator/
+- the total number of genes in the dataset
+- the number of co-expressed genes
+- the number co-expression clusters the co-expressed genes are divided into
+- the tightness of these co-expressed clusters
+- the distance between co-expressed cluster
+- the amount non-specific background co-expression in the dataset
+- the number of sample points
+- the accuracy of the sampling at a timepoint
+- the number of replicates per sample points
+- the inter-replicate noise. 
+
+RealSeq is available in :
+
+```
+RealSeq_data_simulator/
+```
 
 ## Citation
 
