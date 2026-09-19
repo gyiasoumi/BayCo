@@ -81,7 +81,7 @@ def realseq(
     bg_center = rng.uniform(margin, 1 - margin, size=3) # size = 3 for (f_unit, p_unit, a_unit)
     f_bg_center, p_bg_center, a_bg_center = bg_center    
 
-    ## ** 3) GENERATING THE LATENT PROFILES OF EACH GENE ** ##
+    ## ** GENERATING THE LATENT PROFILES OF EACH GENE ** ##
     latent_params_all = []
 
     ## ** BACKGROUND GENES ** ##
